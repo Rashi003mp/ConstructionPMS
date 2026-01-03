@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConstructionPM.Domain.Entities
+namespace ConstructionPM.Application.DTOs
 {
-    public class Role : BaseEntity
+    public class CreateRoleRequestDto
     {
-        public string RoleName { get; set; } = null!;
+        public string RoleName { get; set; }
+
         public string? Description { get; set; }
     }
 }

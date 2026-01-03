@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConstructionPM.Domain.Entities
 {
-    public class ProjectStatusHistory
+    public class ProjectStatusHistory : BaseEntity
     {
-        public int Id { get; set; }
-
         public int ProjectId { get; set; }
 
         public int OldStatus { get; set; }

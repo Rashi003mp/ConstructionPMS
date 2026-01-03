@@ -1,3 +1,4 @@
+using ConstrictionPM.API.Services;
 using ConstructionPM.API.Extensions;
 using ConstructionPM.Application.Interfaces.Auth;
 using ConstructionPM.Application.Interfaces.Repositories.Commands;
@@ -25,6 +26,16 @@ builder.Services.AddSingleton(new DapperContext(connectionString!));
 // repositories
 builder.Services.AddScoped<IUserCommandRepository, UserCommandRepository>();
 builder.Services.AddScoped<IUserQueryRepository, UserQueryRepository>();
+builder.Services.AddScoped<IRoleCommandRepository, RoleCommandRepository>();
+builder.Services.AddScoped<IRoleQueryRepository, RoleQueryRepository>();
+
+// Current User Service
+builder.Services.AddHttpContextAccessor();
+/* AddHttpContextAccessor() registers a helper service that allows any class to access the current HTTP request (HttpContext). */
+
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+
+
 
 // JWT 
 builder.Services.AddSingleton<IJwtTokenGenerator>(

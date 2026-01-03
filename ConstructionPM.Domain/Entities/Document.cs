@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConstructionPM.Domain.Entities
 {
-    public class Document
+    public class Document : BaseEntity
     {
-        public int Id { get; set; }
-
         public string DocumentName { get; set; } = null!;
 
         public string FileType { get; set; } = null!;

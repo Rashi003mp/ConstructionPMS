@@ -23,7 +23,7 @@ namespace ConstructionPM.Infrastructure.Auth
         {
             var claims = new[]
             {
-            new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
+            new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
             new Claim(ClaimTypes.Role, roleName),
             new Claim(ClaimTypes.Name, userName)
         };
