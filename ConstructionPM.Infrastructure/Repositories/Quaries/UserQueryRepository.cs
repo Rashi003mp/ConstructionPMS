@@ -2,6 +2,7 @@
 using ConstructionPM.Application.Interfaces.Repositories.Queries;
 using ConstructionPM.Infrastructure.Dapper;
 using Dapper;
+using System.Data;
 
 
 namespace ConstructionPM.Infrastructure.Repositories.Quaries
@@ -40,5 +41,33 @@ namespace ConstructionPM.Infrastructure.Repositories.Quaries
             using var connection = _context.CreateConnection();
             return await connection.QueryFirstOrDefaultAsync<UserDto>(sql, new { Id = id });
         }
+
+        public async Task<bool> AdminUserExistsAsync()
+        {
+            const string sql = """
+                SELECT COUNT(1)
+                FROM Users
+                INNER JOIN Roles ON Users.RoleId = Roles.Id
+                WHERE Roles.RoleName = 'Admin'
+                  AND Users.IsDeleted = 0
+                """;
+            using var connection = _context.CreateConnection();
+
+            var count = await connection.ExecuteScalarAsync<int>(sql);
+            return count > 0;
+        }
+
+        public async Task<UserWithPasswordDto?> GetForLoginAsync(string email)
+        {
+            using var connection = _context.CreateConnection();
+
+            return await connection.QueryFirstOrDefaultAsync<UserWithPasswordDto>(
+                "GetUserForLogin",
+                new { Email = email },
+                commandType: CommandType.StoredProcedure
+            );
+        }
+
+
     }
 }

@@ -9,5 +9,8 @@ namespace ConstructionPM.Application.Interfaces.Repositories.Queries
     public interface IRoleQueryRepository
     {
         Task<bool> ExistAsync(string roleName);
+
+        Task<int?> GetRoleIdByNameAsync(string roleName);
+
     }
 }

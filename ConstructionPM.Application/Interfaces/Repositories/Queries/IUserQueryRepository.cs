@@ -11,5 +11,11 @@ namespace ConstructionPM.Application.Interfaces.Repositories.Queries
     {
         Task<UserDto?> GetByIdAsync(int id);
         Task<UserDto?> GetByEmailAsync(string email);
+
+        Task<bool> AdminUserExistsAsync();
+
+        Task<UserWithPasswordDto?> GetForLoginAsync(string email);
+
+
     }
 }

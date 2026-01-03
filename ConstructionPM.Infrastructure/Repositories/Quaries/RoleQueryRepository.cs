@@ -30,5 +30,24 @@ namespace ConstructionPM.Infrastructure.Repositories.Quaries
 
             return await connection.ExecuteScalarAsync<int>(sql, new { RoleName = roleName }) > 0;
         }
+
+        public async Task<int?> GetRoleIdByNameAsync(string roleName)
+        {
+            const string sql = """
+        SELECT ID 
+        FROM Roles
+        WHERE RoleName = @RoleName
+          AND IsDeleted = 0
+        """;
+
+             using var connection = _context.CreateConnection();
+            // Optional but explicit:
+            // await connection.OpenAsync();
+
+            var id = await connection.QuerySingleOrDefaultAsync<int?>(sql, new { RoleName = roleName });
+            return id;
+        }
+
+
     }
 }

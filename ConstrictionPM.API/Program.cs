@@ -3,11 +3,13 @@ using ConstructionPM.API.Extensions;
 using ConstructionPM.Application.Interfaces.Auth;
 using ConstructionPM.Application.Interfaces.Repositories.Commands;
 using ConstructionPM.Application.Interfaces.Repositories.Queries;
+using ConstructionPM.Domain.Entities;
 using ConstructionPM.Infrastructure.Auth;
 using ConstructionPM.Infrastructure.Dapper;
 using ConstructionPM.Infrastructure.Persistence;
 using ConstructionPM.Infrastructure.Repositories.Commands;
 using ConstructionPM.Infrastructure.Repositories.Quaries;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +36,11 @@ builder.Services.AddHttpContextAccessor();
 /* AddHttpContextAccessor() registers a helper service that allows any class to access the current HTTP request (HttpContext). */
 
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+
+// Password Hasher
+
+builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+
 
 
 

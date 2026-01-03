@@ -4,16 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConstructionPM.Domain.Entities
+namespace ConstructionPM.Application.DTOs
 {
-    public class User : BaseEntity
+    public class AdminUserSetupRequestDto
     {
         public string Name { get; set; } = null!;
-
         public string Email { get; set; } = null!;
+        public string Password { get; set; } = null!;
 
-        public string PasswordHash { get; set; } = null!;
-        public int RoleId { get; set; }
-
+        
     }
 }
+
+
+/* 
+- null → temporary placeholder, ! → “compiler, don’t warn me” 
+
+*/
