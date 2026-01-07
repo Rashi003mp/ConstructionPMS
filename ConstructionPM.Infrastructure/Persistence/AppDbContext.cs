@@ -24,7 +24,13 @@ namespace ConstructionPM.Infrastructure.Persistence
         public DbSet<Project> Projects => Set<Project>();
         public DbSet<TaskItem> Tasks => Set<TaskItem>();
         public DbSet<Document> Documents => Set<Document>();
-        public DbSet<ProjectStatusHistory> ProjectStatusHistories => Set<ProjectStatusHistory>();
+        public DbSet<ProjectStatusHistory> ProjectStatusHistories => 
+            Set<ProjectStatusHistory>();
+        public DbSet<RegistrationRequest> RegistrationRequests =>
+            Set<RegistrationRequest>();
+
+
+
 
         // =========================
         // SaveChanges Overrides

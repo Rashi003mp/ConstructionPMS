@@ -3,6 +3,8 @@ using ConstructionPM.API.Extensions;
 using ConstructionPM.Application.Interfaces.Auth;
 using ConstructionPM.Application.Interfaces.Repositories.Commands;
 using ConstructionPM.Application.Interfaces.Repositories.Queries;
+using ConstructionPM.Application.Interfaces.Services;
+using ConstructionPM.Application.Services;
 using ConstructionPM.Domain.Entities;
 using ConstructionPM.Infrastructure.Auth;
 using ConstructionPM.Infrastructure.Dapper;
@@ -11,8 +13,20 @@ using ConstructionPM.Infrastructure.Repositories.Commands;
 using ConstructionPM.Infrastructure.Repositories.Quaries;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+// make enums serialized as strings in json responses
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(
+            new JsonStringEnumConverter()
+        );
+    });
 
 // services registration
 builder.Services.AddControllers();
@@ -30,6 +44,10 @@ builder.Services.AddScoped<IUserCommandRepository, UserCommandRepository>();
 builder.Services.AddScoped<IUserQueryRepository, UserQueryRepository>();
 builder.Services.AddScoped<IRoleCommandRepository, RoleCommandRepository>();
 builder.Services.AddScoped<IRoleQueryRepository, RoleQueryRepository>();
+builder.Services.AddScoped<IRegistrationCommandRepository, RegistrationCommandRepository>();
+builder.Services.AddScoped<IRegistrationQueryRepository, RegistrationQueryRepository>();
+
+
 
 // Current User Service
 builder.Services.AddHttpContextAccessor();
@@ -40,6 +58,12 @@ builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 // Password Hasher
 
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+
+// Services
+builder.Services.AddScoped<IRegistrationService, RegistrationService>();
+builder.Services.AddScoped<IPasswordService, PasswordService>();
+builder.Services.AddScoped<IAdminApprovalService, AdminApprovalService>();
+
 
 
 
