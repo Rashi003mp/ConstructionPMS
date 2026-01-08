@@ -35,8 +35,10 @@ namespace ConstructionPM.Application.Services
         public async Task ApproveAsync(int requestId)
         {
             var request = await _registrationQuery.GetByIdAsync(requestId);
+            Console.WriteLine(request);
             if (request == null || request.Status != "Pending")
                 throw new InvalidOperationException("Invalid registration request");
+          
 
             var roleId = await _roleQuery.GetRoleIdByNameAsync(request.RoleName);
             if (roleId == null)

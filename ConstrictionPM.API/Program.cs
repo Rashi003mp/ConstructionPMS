@@ -7,10 +7,12 @@ using ConstructionPM.Application.Interfaces.Services;
 using ConstructionPM.Application.Services;
 using ConstructionPM.Domain.Entities;
 using ConstructionPM.Infrastructure.Auth;
+using ConstructionPM.Infrastructure.Configurations;
 using ConstructionPM.Infrastructure.Dapper;
 using ConstructionPM.Infrastructure.Persistence;
 using ConstructionPM.Infrastructure.Repositories.Commands;
 using ConstructionPM.Infrastructure.Repositories.Quaries;
+using ConstructionPM.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
@@ -18,6 +20,11 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+// configure email settings
+builder.Services.Configure<EmailSettings>(
+    builder.Configuration.GetSection("EmailSettings")
+);
 
 // make enums serialized as strings in json responses
 builder.Services.AddControllers()
@@ -63,6 +70,8 @@ builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IRegistrationService, RegistrationService>();
 builder.Services.AddScoped<IPasswordService, PasswordService>();
 builder.Services.AddScoped<IAdminApprovalService, AdminApprovalService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
+
 
 
 
