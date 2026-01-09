@@ -3,6 +3,7 @@ using ConstructionPM.Application.Interfaces.Repositories.Queries;
 using ConstructionPM.Infrastructure.Dapper;
 using Dapper;
 using System.Data;
+using ConstructionPM.Domain.Entities;
 
 
 namespace ConstructionPM.Infrastructure.Repositories.Quaries
@@ -67,6 +68,33 @@ namespace ConstructionPM.Infrastructure.Repositories.Quaries
                 commandType: CommandType.StoredProcedure
             );
         }
+
+        public async Task<User?> GetByResetTokenAsync(string token)
+        {
+            const string sql = """
+            SELECT *
+            FROM Users
+            WHERE ResetToken  = @token
+              AND IsDeleted = 0
+        """;
+            using var connection = _context.CreateConnection();
+            return await connection.QueryFirstOrDefaultAsync<User>(sql, new { Token = token });
+        }
+
+        public async Task<User?> GetByEntityEmailAsync(string email)
+        {
+            var sql = """
+            SELECT *
+            FROM Users 
+            WHERE Email = @email
+            AND IsDeleted = 0
+        """;
+
+            using var connection = _context.CreateConnection();
+            return await connection.QueryFirstOrDefaultAsync<User>(sql, new { Email = email });
+        }
+
+
 
 
     }

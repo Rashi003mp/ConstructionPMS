@@ -15,5 +15,9 @@ namespace ConstructionPM.Domain.Entities
         public string PasswordHash { get; set; } = null!;
         public int RoleId { get; set; }
 
+        public string? ResetToken { get; set; }
+        public DateTime? ResetTokenExpiry { get; set; }
+
+
     }
 }

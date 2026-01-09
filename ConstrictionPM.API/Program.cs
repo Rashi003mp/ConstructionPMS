@@ -71,6 +71,8 @@ builder.Services.AddScoped<IRegistrationService, RegistrationService>();
 builder.Services.AddScoped<IPasswordService, PasswordService>();
 builder.Services.AddScoped<IAdminApprovalService, AdminApprovalService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IPasswordRecoveryService, PasswordRecoveryService>();
+
 
 
 

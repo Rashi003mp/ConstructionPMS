@@ -13,5 +13,10 @@ namespace ConstructionPM.Application.Interfaces.Services
             string fullName,
             string tempPassword
         );
+        Task SendPasswordResetEmailAsync(
+            string token,
+           string toEmail,
+           string fullName,
+           string resetLink);
     }
 }
