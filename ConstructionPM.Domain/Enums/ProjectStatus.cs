@@ -8,7 +8,7 @@ namespace ConstructionPM.Domain.Enums
 {
     public enum ProjectStatus
     {
-        Planned = 1,
+        Planned,
         Active,
         OnHold,
         Completed

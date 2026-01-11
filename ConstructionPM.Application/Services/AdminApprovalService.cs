@@ -48,7 +48,8 @@ namespace ConstructionPM.Application.Services
             {
                 Name = request.Name,
                 Email = request.Email,
-                RoleId = roleId.Value
+                RoleId = roleId.Value,
+                Phone= request.Phone
             };
 
             // Temporary password strategy (admin can later reset)

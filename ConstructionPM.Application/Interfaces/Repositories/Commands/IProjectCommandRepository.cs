@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ConstructionPM.Application.Interfaces.Repositories.Commands
 {
-    internal interface IProjectCommandRepository
+    public interface IProjectCommandRepository
     {
-        Task<int> CreateAsync(Project project);
-        Task UpdateStatusAsync(int projectId, int newStatus, int changedByUserId);
+        Task CreateAsync(Project project);
+        Task UpdateAsync(Project project);
     }
 }

@@ -9,6 +9,8 @@ namespace ConstructionPM.Domain.Entities
 
         public string Name { get; set; } = null!;
         public string Email { get; set; } = null!;
+
+        public string Phone { get; set; } = null!;
         public string? RoleName { get; set; }
 
         public int? ExperienceYears { get; set; }   // PM / Engineer

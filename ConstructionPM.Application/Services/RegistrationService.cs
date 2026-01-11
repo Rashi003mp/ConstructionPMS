@@ -78,6 +78,7 @@ namespace ConstructionPM.Application.Services
             {
                 Name = r.Name,
                 Email = r.Email,
+                Phone = r.PhoneNumber,
                 RoleName = roleName,
                 ExperienceYears = r.ExperienceYears,
                 Skills = r.Skills,
