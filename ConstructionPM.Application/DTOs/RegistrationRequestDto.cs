@@ -1,19 +1,22 @@
 ﻿using ConstructionPM.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace ConstructionPM.Application.DTOs
 {
     public class RegistrationRequestDto
     {
-        // Common
+        [Required]
         public string Name { get; set; } = null!;
+
+        [Required]
+        [EmailAddress]
         public string Email { get; set; } = null!;
 
+        [Required]
+        [MinLength (10)]
         public string PhoneNumber { get; set; } = null!;
+
+        [Required]
         public RegistrationRole RoleName { get; set; }
         // PM
         public int? ExperienceYears { get; set; }

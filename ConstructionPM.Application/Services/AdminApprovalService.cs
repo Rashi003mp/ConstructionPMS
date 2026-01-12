@@ -35,7 +35,6 @@ namespace ConstructionPM.Application.Services
         public async Task ApproveAsync(int requestId)
         {
             var request = await _registrationQuery.GetByIdAsync(requestId);
-            Console.WriteLine(request);
             if (request == null || request.Status != "Pending")
                 throw new InvalidOperationException("Invalid registration request");
           
@@ -52,7 +51,7 @@ namespace ConstructionPM.Application.Services
                 Phone= request.Phone
             };
 
-            // Temporary password strategy (admin can later reset)
+            // Temporary password strategy ( can later reset)
             var tempPassword = PasswordGenerator.GenerateTempPassword();
 
             user.PasswordHash = _passwordservice.HashPassword(tempPassword);

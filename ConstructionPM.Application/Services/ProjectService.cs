@@ -42,7 +42,6 @@ namespace ConstructionPM.Application.Services
 
         public async Task<IEnumerable<Project>> GetAllAsync()
         {
-            //throw new NotImplementedException();
             return await _query.GetAllAsync();
         }
     }

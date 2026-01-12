@@ -30,7 +30,7 @@ namespace ConstructionPM.Application.Services
 
             var roleName = request.RoleName.ToString();
 
-            Console.WriteLine($"Role Name: {roleName}");
+            //Console.WriteLine($"Role Name: {roleName}");
 
             var roleExists = await _roleQuery.GetRoleIdByNameAsync(roleName);
 

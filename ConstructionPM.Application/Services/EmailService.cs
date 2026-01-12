@@ -1,10 +1,9 @@
-﻿using ConstructionPM.Infrastructure.Configurations;
-using Microsoft.Extensions.Options;
 using ConstructionPM.Application.Interfaces.Services;
-using System.Net.Mail;
+using Microsoft.Extensions.Options;
 using System.Net;
+using System.Net.Mail;
 
-namespace ConstructionPM.Infrastructure.Services
+namespace ConstructionPM.Application.Services
 {
     public class EmailService : IEmailService
     {
@@ -66,9 +65,12 @@ namespace ConstructionPM.Infrastructure.Services
 
                             Please click the link below to reset your password:
                             {resetLink}
-                            or copy the token{token}
+                            or copy the token - {token}
 
                             If you did not request a password reset, please ignore this email.
+
+                                       
+                                Don't Reply to this email.
 
                             Regards,
                             ConstructionPM Team
@@ -93,4 +95,4 @@ namespace ConstructionPM.Infrastructure.Services
 
     }
 
-    }
+}

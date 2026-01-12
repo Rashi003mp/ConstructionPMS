@@ -10,12 +10,12 @@ namespace ConstrictionPM.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminRoleController : ControllerBase
+    public class AddRoleController : ControllerBase
     {
         private readonly IRoleCommandRepository _command;
         private readonly IRoleQueryRepository _query;
 
-        public AdminRoleController(IRoleCommandRepository command, IRoleQueryRepository query  )
+        public AddRoleController(IRoleCommandRepository command, IRoleQueryRepository query  )
         {
             _command = command;
             _query = query;

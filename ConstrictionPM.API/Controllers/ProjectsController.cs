@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ConstructionPM.Application.DTOs;
 using ConstructionPM.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ConstrictionPM.API.Controllers
 {
@@ -18,6 +19,7 @@ namespace ConstrictionPM.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles= "Admin,ProjectManager")]
         public async Task<IActionResult> Create([FromForm]CreateProjectDto request)
         {
             await _service.CreateAsync(request);
@@ -25,6 +27,7 @@ namespace ConstrictionPM.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> Get(int id)
         {
             var projects = await _service.GetByIdAsync(id);
@@ -34,7 +37,7 @@ namespace ConstrictionPM.API.Controllers
         }
 
         [HttpGet]
-
+        [Authorize]
         public async Task<IActionResult> GetAll()
         {
             var project=await _service.GetAllAsync();
